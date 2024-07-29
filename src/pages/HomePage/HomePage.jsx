@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getMoviesTrending } from "../../movies-api";
+import MovieList from "../../components/MovieList/MovieList";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -13,7 +14,7 @@ export default function HomePage() {
         setIsError(false);
 
         const data = await getMoviesTrending();
-        setMovies(data.results);
+        setMovies(data);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -24,5 +25,12 @@ export default function HomePage() {
     fetchTrendingMovies();
   }, []);
 
-  return <h2>Trending today</h2>;
+  return (
+    <div>
+      <h2>Trending today</h2>
+      {isLoading && <b>Loading movies...</b>}
+      {isError && <p>Oooops. Try again, please!</p>}
+      {movies.length > 0 && <MovieList movies={movies} />}
+    </div>
+  );
 }
