@@ -31,7 +31,9 @@ export default function MovieDetailsPage() {
     <div>
       {isLoading && <b>Loading movies...</b>}
       {isError && <p>Oooops. Try again, please!</p>}
-      <div>{/* <p>{movieById.title}</p> */}</div>
+      <div>
+        <p>{movieById.title}</p>
+      </div>
     </div>
   );
 }
