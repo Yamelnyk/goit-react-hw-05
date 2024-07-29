@@ -52,13 +52,60 @@ export const getMovieById = async (Id) => {
   return axios
     .request(options)
     .then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     })
     .catch(function (error) {
       console.error(error);
     });
 };
+
+export const getMovieCasts = async (id) => {
+  const options = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/movie/${id}/credits`,
+    params: { language: "en-US" },
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTE4ZTk5MDc5OTc0Mjk3MDEwZTZiOWJhNjQyZjBjMyIsIm5iZiI6MTcyMjI0MzcxMC4wOTU3NjIsInN1YiI6IjY2NWViZWE5N2IyMTUyMDZlODU0OGQzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bd6dga8yik5rPdshbEQXf3egG_IVVttzf60Qv2nrlgI",
+    },
+  };
+
+  return axios
+    .request(options)
+    .then(function (response) {
+      // console.log(response.data.cast);
+      return response.data.cast;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
+export const getMovieReviews = async (id) => {
+  const options = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/movie/${id}/reviews`,
+    params: { language: "en-US" },
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTE4ZTk5MDc5OTc0Mjk3MDEwZTZiOWJhNjQyZjBjMyIsIm5iZiI6MTcyMjI0MzcxMC4wOTU3NjIsInN1YiI6IjY2NWViZWE5N2IyMTUyMDZlODU0OGQzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bd6dga8yik5rPdshbEQXf3egG_IVVttzf60Qv2nrlgI",
+    },
+  };
+
+  return axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data.results);
+      return response.data.results;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
 // const url =
 //   "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1";
 
