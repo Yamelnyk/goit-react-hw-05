@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { getMoviesTrending } from "../../movies-api";
 import MovieList from "../../components/MovieList/MovieList";
+import { useLocation } from "react-router-dom";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchTrendingMovies() {

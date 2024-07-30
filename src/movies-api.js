@@ -106,6 +106,33 @@ export const getMovieReviews = async (id) => {
     });
 };
 
+export const getMovieSearch = async (value) => {
+  const options = {
+    method: "GET",
+    url: "https://api.themoviedb.org/3/search/movie",
+    params: {
+      include_adult: "false",
+      language: "en-US",
+      page: "1",
+      query: value,
+    },
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTE4ZTk5MDc5OTc0Mjk3MDEwZTZiOWJhNjQyZjBjMyIsIm5iZiI6MTcyMjMzMDc1Ni45NzgzNDcsInN1YiI6IjY2NWViZWE5N2IyMTUyMDZlODU0OGQzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5-rTXoHBZY18kFkUFkPbcipfQdv_pIQDFhl7HZCDTAg",
+    },
+  };
+
+  return axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data.results);
+      return response.data.results;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
 // const url =
 //   "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1";
 
